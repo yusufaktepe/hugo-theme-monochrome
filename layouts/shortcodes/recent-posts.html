@@ -17,18 +17,20 @@
 
 <ul class="list-layout">
     {{ range $pages }}
-        <li>
-            <a href="{{ .RelPermalink }}">
-                {{- .Title -}}
-            </a>
-            <span>
-            {{- if eq $sortby "publishDate" -}}
-                {{- .PublishDate.Format "2006/01/02" -}}
-            {{- else if eq $sortby "lastMod" -}}
-                {{- .Lastmod.Format "2006/01/02" -}}
-            {{- end -}}
-            </span>
-        </li>
+        {{ if not .Params.Hidden }}
+            <li>
+                <a href="{{ .RelPermalink }}">
+                    {{- .Title -}}
+                </a>
+                <span>
+                {{- if eq $sortby "publishDate" -}}
+                    {{- .PublishDate.Format "2006/01/02" -}}
+                {{- else if eq $sortby "lastMod" -}}
+                    {{- .Lastmod.Format "2006/01/02" -}}
+                {{- end -}}
+                </span>
+            </li>
+        {{- end -}}
     {{ end }}
 </ul>
 {{- end -}}

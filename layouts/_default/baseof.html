@@ -34,10 +34,16 @@
                     {{ if (.Params.disqus | default .Site.DisqusShortname) }}
                         {{- partial "disqus.html" . -}}
                     {{ end }}
+                    {{- if (.Param "comments") }}
+                        {{- partial "comments.html" . }}
+                    {{- end }}
                 {{ else }}
                     {{ if (.Params.disqus | default false) }}
                         {{- partial "disqus.html" . -}}
                     {{ end }}
+                    {{- if (.Params.comments | default false) }}
+                        {{- partial "comments.html" . }}
+                    {{- end }}
                 {{ end }}
             </div>
             {{- partial "footer.html" . -}}
